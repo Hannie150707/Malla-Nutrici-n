@@ -1,15 +1,75 @@
+Aquí tienes el código HTML, CSS y JavaScript para crear una malla interactiva que permite "aprobar" los ramos y desbloquear los requisitos correspondientes. La malla está organizada por años y períodos, y utiliza un color rojo cherry para los cuadros.
+
+### index.html
+```html
 <!DOCTYPE html>
-<html lang = "es">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Curricular de Nutrición</title>
-  <link rel="stylesheet" href="estilos.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Malla Interactiva</title>
 </head>
 <body>
-  <h1>Malla Curricular de Nutrición</h1>
-  <div id="malla" class="malla"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    <h1>Malla Curricular Interactiva</h1>
+    <div class="container">
+        <div class="year">
+            <h2>Primer Año</h2>
+            <div class="period">
+                <h3>Primer Período</h3>
+                <div class="subject" data-requisites="[]">EG-011 Español General</div>
+                <div class="subject" data-requisites="[]">RR-150 Arte o Deporte</div>
+                <div class="subject" data-requisites="[]">MM-112 Matemáticas</div>
+                <div class="subject" data-requisites="[]">BI-123 Biología Medica</div>
+                <div class="subject" data-requisites="[]">QQ-111 Química Medica I</div>
+                <div class="subject" data-requisites="[]">IN-101 Inglés I</div>
+            </div>
+            <div class="period">
+                <h3>Segundo Período</h3>
+                <div class="subject" data-requisites="[QQ-111]">QQ-112 Química Medica II</div>
+                <div class="subject" data-requisites="[]">FF-101 Filosofía</div>
+            </div>
+            <div class="period">
+                <h3>Tercer Período</h3>
+                <div class="subject" data-requisites="[]">SC-101 Sociología</div>
+                <div class="subject" data-requisites="[]">HH-101 Historia de Honduras</div>
+                <div class="subject" data-requisites="[]">BI-130 Educación Ambiental</div>
+                <div class="subject" data-requisites="[QQ-112, BI-123, MM-112]">QQ-321 Bioquímica</div>
+                <div class="subject" data-requisites="[MM-112]">MM-241 Bioestadística</div>
+                <div class="subject" data-requisites="[QQ-111, BI-123]">NUT-101 Introducción a la Nutrición y Bioética</div>
+            </div>
+        </div>
+        <div class="year">
+            <h2>Segundo Año</h2>
+            <div class="period">
+                <h3>Cuarto Período</h3>
+                <div class="subject" data-requisites="[NUT-101]">NUT-102 Desarrollo Humano y Comunicación</div>
+                <div class="subject" data-requisites="[EG-011, MM-241]">NUT-011 Metodología de la Investigación</div>
+                <div class="subject" data-requisites="[FF-101, SC-101, NUT-101]">NUT-103 Antropología Alimentaria</div>
+                <div class="subject" data-requisites="[QQ-321, BI-123]">NUT-012 Morfología aplicada a la Nutrición</div>
+                <div class="subject" data-requisites="[QQ-321, NUT-101]">NUT-104 Nutrición Básica</div>
+                <div class="subject" data-requisites="[IN-101]">IN-102 Inglés II</div>
+                <div class="subject" data-requisites="[]">RR-190 Optativa Humanidades</div>
+            </div>
+            <div class="period">
+                <h3>Quinto Período</h3>
+                <div class="subject" data-requisites="[NUT-103]">NUT-113 Socioeconomía Alimentaria Nutricional</div>
+                <div class="subject" data-requisites="[MM-241, NUT-104]">NUT-114 Computación e Información Aplicada</div>
+            </div>
+            <div class="period">
+                <h3>Sexto Período</h3>
+                <div class="subject" data-requisites="[NUT-104, NUT-011, NUT-114]">NUT-204 Evaluación del Estado Nutricional</div>
+                <div class="subject" data-requisites="[QQ-321, NUT-104]">NUT-205 Bioquímica de los Alimentos</div>
+                <div class="subject" data-requisites="[NUT-104, NUT-012]">NUT-206 Microbiología e Higiene de los Alimentos</div>
+                <div class="subject" data-requisites="[NUT-104, NUT-012]">NUT-207 Nutrición en el Ciclo de Vida</div>
+                <div class="subject" data-requisites="[NUT-104, NUT-012]">NUT-208 Fisiopatología Aplicada a la Nutrición</div>
+                <div class="subject" data-requisites="[NUT-104]">NUT-209 Selección y Preparación de los Alimentos I</div>
+            </div>
+        </div>
+        <div class="year">
+            <h2>Tercer Año</h2>
+            <div class="period">
+                <h3>Septimo Período</h3>
+                <div class="subject" data-requisites="[NUT-204, NUT-207]">NUT-307 Nutrición Pública</div>
+                <div class="subject" data-requisites="[NUT-205, NUT-206]">NUT-306 Tecnología de los Alimentos</div>
+                <
