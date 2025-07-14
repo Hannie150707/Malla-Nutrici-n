@@ -11,6 +11,10 @@ h1 {
   color: #d63384;
 }
 
+button {
+  font-size: 14 px;
+}
+
 .malla {
   display: flex;
   flex-wrap: wrap;
@@ -19,23 +23,15 @@ h1 {
 }
 
 .ramo {
-  background-color: #ffc0cb;
-  border: 2 px solid #d63384;
-  border-radius: 10 px;
+  margin: 5 px;
   padding: 10 px;
-  width: 200 px;
-  text-align: center;
+  border-radius: 8 px;
+  background-color: #f9c2d1;
+  border: 2 px solid #d63384;
   cursor: pointer;
-  transition: 0.3 s;
-}
-
-.ramo:hover {
-  background-color: #f78fb3;
-}
-
-.ramo.aprobado {
-  background-color: #c0ffc0;
-  border-color: #28a745;
+  width: 120 px;
+  font-size: 12 px;
+  white-space: normal;
 }
 
 .ramo.bloqueado {
@@ -43,4 +39,11 @@ h1 {
   border-color: #dc3545;
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.ramo.aprobado {
+  background-color: #c8e6c9;
+  border-color: #388e3c;
+  color: #000;
+  cursor: default;
 }
