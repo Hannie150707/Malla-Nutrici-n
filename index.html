@@ -1,75 +1,196 @@
-Aquí tienes el código HTML, CSS y JavaScript para crear una malla interactiva que permite "aprobar" los ramos y desbloquear los requisitos correspondientes. La malla está organizada por años y períodos, y utiliza un color rojo cherry para los cuadros.
-
-### index.html
+`index.html`
 ```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malla Curricular Interactiva Nutrición</title>
     <link rel="stylesheet" href="styles.css">
-    <title>Malla Interactiva</title>
 </head>
 <body>
-    <h1>Malla Curricular Interactiva</h1>
-    <div class="container">
-        <div class="year">
-            <h2>Primer Año</h2>
-            <div class="period">
-                <h3>Primer Período</h3>
-                <div class="subject" data-requisites="[]">EG-011 Español General</div>
-                <div class="subject" data-requisites="[]">RR-150 Arte o Deporte</div>
-                <div class="subject" data-requisites="[]">MM-112 Matemáticas</div>
-                <div class="subject" data-requisites="[]">BI-123 Biología Medica</div>
-                <div class="subject" data-requisites="[]">QQ-111 Química Medica I</div>
-                <div class="subject" data-requisites="[]">IN-101 Inglés I</div>
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://placehold.co/100x100" alt="Logo de la facultad de nutrición con diseño moderno en tonos rojos y blancos" />
+            <h1>Malla Curricular<br>Nutrición y Dietética</h1>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="period">
-                <h3>Segundo Período</h3>
-                <div class="subject" data-requisites="[QQ-111]">QQ-112 Química Medica II</div>
-                <div class="subject" data-requisites="[]">FF-101 Filosofía</div>
+            <span id="progressText">0% completado</span>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="instructions">
+            <p>Haz clic en los ramos para marcarlos como aprobados. Los ramos se desbloquean automáticamente al cumplir sus requisitos.</p>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color available"></div>
+                <span>Disponible</span>
             </div>
-            <div class="period">
-                <h3>Tercer Período</h3>
-                <div class="subject" data-requisites="[]">SC-101 Sociología</div>
-                <div class="subject" data-requisites="[]">HH-101 Historia de Honduras</div>
-                <div class="subject" data-requisites="[]">BI-130 Educación Ambiental</div>
-                <div class="subject" data-requisites="[QQ-112, BI-123, MM-112]">QQ-321 Bioquímica</div>
-                <div class="subject" data-requisites="[MM-112]">MM-241 Bioestadística</div>
-                <div class="subject" data-requisites="[QQ-111, BI-123]">NUT-101 Introducción a la Nutrición y Bioética</div>
+            <div class="legend-item">
+                <div class="legend-color approved"></div>
+                <span>Aprobado</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color locked"></div>
+                <span>Bloqueado</span>
             </div>
         </div>
-        <div class="year">
-            <h2>Segundo Año</h2>
-            <div class="period">
-                <h3>Cuarto Período</h3>
-                <div class="subject" data-requisites="[NUT-101]">NUT-102 Desarrollo Humano y Comunicación</div>
-                <div class="subject" data-requisites="[EG-011, MM-241]">NUT-011 Metodología de la Investigación</div>
-                <div class="subject" data-requisites="[FF-101, SC-101, NUT-101]">NUT-103 Antropología Alimentaria</div>
-                <div class="subject" data-requisites="[QQ-321, BI-123]">NUT-012 Morfología aplicada a la Nutrición</div>
-                <div class="subject" data-requisites="[QQ-321, NUT-101]">NUT-104 Nutrición Básica</div>
-                <div class="subject" data-requisites="[IN-101]">IN-102 Inglés II</div>
-                <div class="subject" data-requisites="[]">RR-190 Optativa Humanidades</div>
+        
+        <div class="container">
+            <!-- Año 1 -->
+            <div class="year" data-year="1">
+                <h2><span class="year-number">1°</span> Primer Año</h2>
+                
+                <div class="period" data-period="1">
+                    <h3>Primer Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="EG-011" data-requisites="[]">EG-011 Español General</div>
+                        <div class="subject" data-code="RR-150" data-requisites="[]">RR-150 Arte o Deporte</div>
+                        <div class="subject" data-code="MM-112" data-requisites="[]">MM-112 Matemáticas</div>
+                        <div class="subject" data-code="BI-123" data-requisites="[]">BI-123 Biología Médica</div>
+                        <div class="subject" data-code="QQ-111" data-requisites="[]">QQ-111 Química Médica I</div>
+                        <div class="subject" data-code="IN-101" data-requisites="[]">IN-101 Inglés I</div>
+                    </div>
+                </div>
+                
+                <div class="period" data-period="2">
+                    <h3>Segundo Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="QQ-112" data-requisites='["QQ-111"]'>QQ-112 Química Médica II</div>
+                        <div class="subject" data-code="FF-101" data-requisites="[]">FF-101 Filosofía</div>
+                    </div>
+                </div>
+                
+                <div class="period" data-period="3">
+                    <h3>Tercer Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="SC-101" data-requisites="[]">SC-101 Sociología</div>
+                        <div class="subject" data-code="HH-101" data-requisites="[]">HH-101 Historia de Honduras</div>
+                        <div class="subject" data-code="BI-130" data-requisites="[]">BI-130 Educación Ambiental</div>
+                        <div class="subject" data-code="QQ-321" data-requisites='["QQ-112", "BI-123", "MM-112"]'>QQ-321 Bioquímica</div>
+                        <div class="subject" data-code="MM-241" data-requisites='["MM-112"]'>MM-241 Bioestadística</div>
+                        <div class="subject" data-code="NUT-101" data-requisites='["QQ-111", "BI-123"]'>NUT-101 Introducción a la Nutrición y Bioética</div>
+                    </div>
+                </div>
             </div>
-            <div class="period">
-                <h3>Quinto Período</h3>
-                <div class="subject" data-requisites="[NUT-103]">NUT-113 Socioeconomía Alimentaria Nutricional</div>
-                <div class="subject" data-requisites="[MM-241, NUT-104]">NUT-114 Computación e Información Aplicada</div>
+
+            <!-- Año 2 -->
+            <div class="year" data-year="2">
+                <h2><span class="year-number">2°</span> Segundo Año</h2>
+                
+                <div class="period" data-period="4">
+                    <h3>Cuarto Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-102" data-requisites='["NUT-101"]'>NUT-102 Desarrollo Humano y Comunicación</div>
+                        <div class="subject" data-code="NUT-011" data-requisites='["EG-011", "MM-241"]'>NUT-011 Metodología de la Investigación</div>
+                        <div class="subject" data-code="NUT-103" data-requisites='["FF-101", "SC-101", "NUT-101"]'>NUT-103 Antropología Alimentaria</div>
+                        <div class="subject" data-code="NUT-012" data-requisites='["QQ-321", "BI-123"]'>NUT-012 Morfología aplicada a la Nutrición</div>
+                        <div class="subject" data-code="NUT-104" data-requisites='["QQ-321", "NUT-101"]'>NUT-104 Nutrición Básica</div>
+                        <div class="subject" data-code="IN-102" data-requisites='["IN-101"]'>IN-102 Inglés II</div>
+                        <div class="subject" data-code="RR-190" data-requisites="[]">RR-190 Optativa Humanidades</div>
+                    </div>
+                </div>
+                
+                <div class="period" data-period="5">
+                    <h3>Quinto Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-113" data-requisites='["NUT-103"]'>NUT-113 Socioeconomía Alimentaria Nutricional</div>
+                        <div class="subject" data-code="NUT-114" data-requisites='["MM-241", "NUT-104"]'>NUT-114 Computación e Información Aplicada</div>
+                    </div>
+                </div>
+                
+                <div class="period" data-period="6">
+                    <h3>Sexto Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-204" data-requisites='["NUT-104", "NUT-011", "NUT-114"]'>NUT-204 Evaluación del Estado Nutricional</div>
+                        <div class="subject" data-code="NUT-205" data-requisites='["QQ-321", "NUT-104"]'>NUT-205 Bioquímica de los Alimentos</div>
+                        <div class="subject" data-code="NUT-206" data-requisites='["NUT-104", "NUT-012"]'>NUT-206 Microbiología e Higiene de los Alimentos</div>
+                        <div class="subject" data-code="NUT-207" data-requisites='["NUT-104", "NUT-012"]'>NUT-207 Nutrición en el Ciclo de Vida</div>
+                        <div class="subject" data-code="NUT-208" data-requisites='["NUT-104", "NUT-012"]'>NUT-208 Fisiopatología Aplicada a la Nutrición</div>
+                        <div class="subject" data-code="NUT-209" data-requisites='["NUT-104"]'>NUT-209 Selección y Preparación de los Alimentos I</div>
+                    </div>
+                </div>
             </div>
-            <div class="period">
-                <h3>Sexto Período</h3>
-                <div class="subject" data-requisites="[NUT-104, NUT-011, NUT-114]">NUT-204 Evaluación del Estado Nutricional</div>
-                <div class="subject" data-requisites="[QQ-321, NUT-104]">NUT-205 Bioquímica de los Alimentos</div>
-                <div class="subject" data-requisites="[NUT-104, NUT-012]">NUT-206 Microbiología e Higiene de los Alimentos</div>
-                <div class="subject" data-requisites="[NUT-104, NUT-012]">NUT-207 Nutrición en el Ciclo de Vida</div>
-                <div class="subject" data-requisites="[NUT-104, NUT-012]">NUT-208 Fisiopatología Aplicada a la Nutrición</div>
-                <div class="subject" data-requisites="[NUT-104]">NUT-209 Selección y Preparación de los Alimentos I</div>
+
+            <!-- Año 3 -->
+            <div class="year" data-year="3">
+                <h2><span class="year-number">3°</span> Tercer Año</h2>
+                
+                <div class="period" data-period="7">
+                    <h3>Séptimo Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-307" data-requisites='["NUT-204", "NUT-207"]'>NUT-307 Nutrición Pública</div>
+                        <div class="subject" data-code="NUT-306" data-requisites='["NUT-205", "NUT-206"]'>NUT-306 Tecnología de los Alimentos</div>
+                        <div class="subject" data-code="NUT-302" data-requisites='["NUT-102", "NUT-011", "NUT-207"]'>NUT-302 Información, Educación y Comunicación en Nutrición</div>
+                        <div class="subject" data-code="NUT-309" data-requisites='["NUT-209"]'>NUT-309 Selección y Preparación de los Alimentos II</div>
+                        <div class="subject" data-code="NUT-310" data-requisites='["NUT-207", "NUT-209"]'>NUT-310 Dietética</div>
+                        <div class="subject" data-code="IN-103" data-requisites='["IN-102"]'>IN-103 Inglés III</div>
+                        <div class="subject" data-code="NUT-311" data-requisites='["NUT-011"]'>NUT-311 Epidemiología Aplicada a la Nutrición</div>
+                    </div>
+                </div>
+                
+                <div class="period" data-period="8">
+                    <h3>Octavo Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-407" data-requisites='["NUT-307"]'>NUT-407 Investigación en Nutrición Pública</div>
+                        <div class="subject" data-code="NUT-402" data-requisites='["NUT-302", "NUT-307"]'>NUT-402 Promoción de la Salud Aplicada a la Nutrición</div>
+                    </div>
+                </div>
+                
+                <div class="period" data-period="9">
+                    <h3>Noveno Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-506" data-requisites='["NUT-311", "NUT-401"]'>NUT-506 Seguridad Alimentaria y Gestión del Desarrollo</div>
+                        <div class="subject" data-code="NUT-507" data-requisites='["NUT-311", "NUT-402"]'>NUT-507 Nutrición Comunitaria</div>
+                        <div class="subject" data-code="NUT-510" data-requisites='["NUT-204", "NUT-207", "NUT-310", "NUT-208"]'>NUT-510 Dietoterapia del Niño y Adolescente</div>
+                        <div class="subject" data-code="NUT-511" data-requisites='["NUT-309", "NUT-310", "NUT-207", "NUT-204"]'>NUT-511 Dietética Institucional</div>
+                        <div class="subject" data-code="NUT-603" data-requisites='["NUT-207", "NUT-204", "NUT-208", "NUT-310"]'>NUT-603 Dietoterapia del Adulto</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Año 5 -->
+            <div class="year" data-year="5">
+                <h2><span class="year-number">5°</span> Quinto Año</h2>
+                
+                <div class="period" data-period="10">
+                    <h3>Décimo Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-601" data-requisites='["NUT-506", "NUT-507", "NUT-407"]'>NUT-601 Proyectos Integrales de Seguridad Alimentaria y Nutricional</div>
+                        <div class="subject" data-code="NUT-512" data-requisites='["NUT-402"]'>NUT-512 Nutrición Preventiva</div>
+                        <div class="subject" data-code="NUT-602" data-requisites='["NUT-507", "NUT-510", "NUT-307", "NUT-603"]'>NUT-602 Formulación y Ejecución de Políticas en Seguridad Alimentaria y Nutricional</div>
+                        <div class="subject" data-code="NUT-605" data-requisites='["NUT-511"]'>NUT-605 Administración de Servicios de Alimentación y Nutrición</div>
+                    </div>
+                </div>
+                
+                <div class="period" data-period="11">
+                    <h3>Undécimo Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-701" data-requisites='[]' data-special="true">NUT-701 Práctica Institucional Supervisada</div>
+                    </div>
+                </div>
+                
+                <div class="period" data-period="12">
+                    <h3>Duodécimo Período</h3>
+                    <div class="subjects-container">
+                        <div class="subject" data-code="NUT-801" data-requisites='[]' data-special="true">NUT-801 Servicio Social Comunitario</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="year">
-            <h2>Tercer Año</h2>
-            <div class="period">
-                <h3>Septimo Período</h3>
-                <div class="subject" data-requisites="[NUT-204, NUT-207]">NUT-307 Nutrición Pública</div>
-                <div class="subject" data-requisites="[NUT-205, NUT-206]">NUT-306 Tecnología de los Alimentos</div>
-                <
+    </main>
+
+    <footer class="footer">
+        <p>© 2023 Facultad de Nutrición y Dietética - Todos los derechos reservados</p>
+        <img src="https://placehold.co/150x50" alt="Sello de calidad de la facultad en tonos rojos y dorados" />
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
