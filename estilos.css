@@ -1,7 +1,46 @@
-echo "# Malla-Nutrici-n" >> README.md 
-git init 
-git add README.md 
-git commit -m "primer commit" 
-git branch -M main 
-git remote add origin https://github.com/Hannie150707/Malla-Nutrici-n.git
- git push -u origin main
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff0f5;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #d63384;
+}
+
+.malla {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.ramo {
+  background-color: #ffc0cb;
+  border: 2px solid #d63384;
+  border-radius: 10px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ramo:hover {
+  background-color: #f78fb3;
+}
+
+.ramo.aprobado {
+  background-color: #c0ffc0;
+  border-color: #28a745;
+}
+
+.ramo.bloqueado {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
